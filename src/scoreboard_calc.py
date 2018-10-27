@@ -127,7 +127,7 @@ def print_all_category_scores(weekly_score_dict):
     for category, category_list in weekly_score_dict.items():
         category_name = category_dict[category]
 
-        category_string = f"<< {category_name} >>"
+        category_string = f""
         for index, category_tuple in Ranking(category_list, strategy=FRACTIONAL, key=lambda x: x[1]):
             team_rank = index + 1
             team_id = category_tuple[0]
