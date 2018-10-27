@@ -1,7 +1,7 @@
 version: '2.1'
 services:
     webserver:
-        image: flask-espn-dashboard
+        image: 146006631841.dkr.ecr.us-west-1.amazonaws.com/flask-espn-dashboard:latest
         restart: always
         environment:
             - FLASK_DEBUG=1
