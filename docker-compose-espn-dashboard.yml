@@ -1,0 +1,9 @@
+version: '2.1'
+services:
+    webserver:
+        image: flask-espn-dashboard
+        restart: always
+        environment:
+            - FLASK_DEBUG=1
+        ports:
+            - "5000:5000"
