@@ -18,5 +18,8 @@ rsync -azvh docker-compose-espn-dashboard.yml $REMOTE_SERVER:espn-dashboard/dock
 
 ssh $REMOTE_SERVER << EOF
     cd espn-dashboard
+    docker-compose -f docker-compose-espn-dashboard.yml down
+    docker-compose rm -f espn-dashboard-webserver
+    docker rmi -f 146006631841.dkr.ecr.us-west-1.amazonaws.com/flask-espn-dashboard:latest
     docker-compose -f docker-compose-espn-dashboard.yml up -d
 EOF

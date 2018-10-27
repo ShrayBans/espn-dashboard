@@ -14,9 +14,9 @@ class Health(Resource):
 
 class CalculateESPNRankings(Resource):
     def get(self, week_number):
-        result = calculate_espn_rankings(week_number)
+        scores, calculations = calculate_espn_rankings(week_number)
 
-        return {'result': result}
+        return {'scores': scores, 'calculations': calculations}
 
 api.add_resource(Health, '/health')
 api.add_resource(CalculateESPNRankings, '/espn_rankings/<int:week_number>')

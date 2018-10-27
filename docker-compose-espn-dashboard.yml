@@ -1,6 +1,6 @@
 version: '2.1'
 services:
-    webserver:
+    espn-dashboard-webserver:
         image: 146006631841.dkr.ecr.us-west-1.amazonaws.com/flask-espn-dashboard:latest
         restart: always
         environment:

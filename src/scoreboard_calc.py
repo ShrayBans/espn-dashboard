@@ -117,12 +117,13 @@ def calculate_espn_rankings(current_week):
             else:
                 team_scores[team_name] = (11 - team_rank)
 
-    print_all_category_scores(weekly_score_dict)
+    category_scores = print_all_category_scores(weekly_score_dict)
     sorted_total = print_all_sorted_totals(team_scores)
 
-    return sorted_total
+    return (sorted_total, category_scores)
 
 def print_all_category_scores(weekly_score_dict):
+    category_value_map = {}
     for category, category_list in weekly_score_dict.items():
         category_name = category_dict[category]
 
@@ -133,8 +134,10 @@ def print_all_category_scores(weekly_score_dict):
             team_name = team_dict[team_id]
             team_category_value = category_tuple[1]
             category_string += f' ({team_rank}) {team_name} {team_category_value} |'
-
+        category_value_map[category_name] = category_string
         print(category_string)
+
+    return category_value_map
 
 def print_all_sorted_totals(team_scores):
     scores = [(k, v) for k, v in team_scores.items()]
