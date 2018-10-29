@@ -123,7 +123,8 @@ def calculate_espn_rankings(current_week):
     return (sorted_total, category_scores)
 
 def print_all_category_scores(weekly_score_dict):
-    category_value_map = {}
+    team_category_map = {}
+
     for category, category_list in weekly_score_dict.items():
         category_name = category_dict[category]
 
@@ -133,20 +134,26 @@ def print_all_category_scores(weekly_score_dict):
             team_id = category_tuple[0]
             team_name = team_dict[team_id]
             team_category_value = category_tuple[1]
-            category_string += f' ({team_rank}) {team_name} {team_category_value} |'
-        category_value_map[category_name] = category_string
-        print(category_string)
+            if team_name in team_category_map:
+                team_category_map[team_name].update({ category_name: { "rank": team_rank, "category_value": team_category_value }})
+            else:
+                team_category_map[team_name] = { category_name: { "rank": team_rank, "category_value": team_category_value }}
 
-    return category_value_map
+            category_string += f' ({team_rank}) {team_name} {team_category_value} |'
+        print(category_string)
+    return team_category_map
 
 def print_all_sorted_totals(team_scores):
     scores = [(k, v) for k, v in team_scores.items()]
     scores.sort(key=lambda tup: tup[1], reverse=True)
     total_score_string = f"| Total Scores:"
+    formatted_output_scores = []
     for score in scores:
         team_name = score[0]
         total_score_value = score[1]
+        formatted_output_scores.append({ "team_name": team_name, "score_value": total_score_value })
         total_score_string += f' {team_name} {total_score_value} |'
-    print(total_score_string)
 
-    return total_score_string
+    print(total_score_string)
+    print(formatted_output_scores)
+    return formatted_output_scores

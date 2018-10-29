@@ -11,6 +11,7 @@ RUN pip3 install flask_restful
 RUN pip3 install ranking
 RUN pip3 install pandas
 RUN pip3 install requests
+RUN pip3 install -U flask-cors
 
 COPY . /app
 WORKDIR /app
